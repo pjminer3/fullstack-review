@@ -4,9 +4,9 @@ const Schema = mongoose.Schema; // Reassigns mongoose.Schema => Schema
 
 // schema for individual users
 let userSchema = Schema({
-  userId: number,
-  userName: string,
-  userRepos: [{type: Schema.Types.ObjectId, ref: 'Repo'}] // <-- not sure about this line
+  userId: Number,
+  userName: String,
+  userRepos: String// [{type: Schema.Types.ObjectId, ref: 'Repo'}] // <-- not sure about this line
 });
 
 let User = mongoose.model('User', userSchema);
@@ -14,29 +14,22 @@ let User = mongoose.model('User', userSchema);
 
 // schema for each individual repo
 let repoSchema = Schema({
-  // TODO: your schema here!
-  repoId: number,
-  repoName: string,
-  ownerId: {type: Schema.Types.ObjectId, ref: 'User'}, // <-- not sure about this line
-  ownerLogin: string,
-  stars: number,
-  htmlUrl: string
+  repoId: Number,
+  repoName: String,
+  ownerId: Number, //{type: Schema.Types.ObjectId, ref: 'User'}, // <-- not sure about this line
+  ownerLogin: String,
+  stars: Number,
+  htmlUrl: String
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
 
-let save = ( userOrRepo, callback ) => {
+let save = ( /*  */ ) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  userOrRepo.save(function(err) {
-    if (err) {
-      throw err;
-    }
 
-    // saved!
-  })
 
 
 }
