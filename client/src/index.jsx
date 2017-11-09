@@ -11,12 +11,11 @@ class App extends React.Component {
       repos: []
     }
 
+    // get = this.get.bind(this);
   }
 
-  componentDidMount () {
-    // get request 
-    console.log('Component is rendered.  GET request is being sent');
-    $.ajax({
+  get() {
+   $.ajax({
       url: '/repos',
       type: 'GET',
       contentType: 'application/json',
@@ -38,10 +37,16 @@ class App extends React.Component {
         repos: JSON.parse(data)
       });
     });
+  }
+
+  componentDidMount() {
+    // get request 
+    console.log('Component is rendered.  GET request is being sent');
+    this.get();
 
   }
 
-  search (term) {
+  search(term) {
     console.log(`${term} was searched`);
     // When button is clicked, will send post request to /repos and will be registered on server
     $.ajax({
@@ -51,12 +56,12 @@ class App extends React.Component {
       data: JSON.stringify({username: term}),
       success: function(data) {
         console.log('Properly submitted post request: ', data);
+        // this.get();
       },
       error: function(err) {
         console.log('Post failed: ', err);
       }
     });
-
   }
 
   render () {

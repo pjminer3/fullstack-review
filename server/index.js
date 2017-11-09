@@ -23,14 +23,10 @@ app.post('/repos', function (req, res) {
 
 app.get('/repos', function (req, res) {
   console.log('Hello from GET function of server');
-  // TODO - your code here!
   // This route should send back the top 25 repos
 
- get25TopRepos(req, res);
-
-  //res.send(JSON.stringify(([{repoId: 'SampleID', repoName: 'Sample Name', ownerId: 'Sample Owner Id', ownerLogin: 'Sample Login', stars: '5', htmlUrl: 'www.helloWorld.com'}])));
-
-  // query the database for the 25 dankest repos
+  // this function is defined at the bottom of this file
+  get25TopRepos(req, res);
 
 });
 
@@ -39,6 +35,8 @@ let port = 1128;
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
+
+
 
 function get25TopRepos (req, res) {
   console.log('get25TopRepos was called!');
@@ -59,8 +57,5 @@ function get25TopRepos (req, res) {
   .then(repos => {
     res.send(JSON.stringify(repos));
   });
-
-
-
 }
 
