@@ -15,7 +15,8 @@ app.post('/repos', function (req, res) {
   // and get the repo information from the github API, then
   // save the repo information in the database
 
-  //gitHelpers.getReposByUsername(username, db.save); // do I add a next function?
+  // gitHelpers.getReposByUsername(username, db.save); // do I add a next function?
+  // --------------- UNCOMMENT TOMORROW TO GET USER DATA
   
 
   res.send('Post was successful');
