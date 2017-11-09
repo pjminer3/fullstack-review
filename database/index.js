@@ -37,12 +37,33 @@ let save = ( repos ) => {
       }
     })
   })
-  
-
-
 }
+
+
+// let get25TopRepos = (req, res) => {
+//   console.log('get25TopRepos was called!');
+//   /* Querries DB for 25 top repos:
+//     I: None
+//     O: An array of repo objects from the mongo DB
+//     C: Limit to 25 repos
+//     E: none 
+//   */
+//   // finds the 25 repos with the most stars, and then passes them into the render callback callback
+//   Repo.find( err => {
+//     if (err) {
+//       throw err
+//     }
+//   })
+//   .limit(25)
+//   .sort({stargazers_count: -1})
+//   .then(repos => {
+//     res.sesnd(JSON.stringify(repos));
+//   })
+  
+// }
 
 module.exports.save = save;
 // export the class objects
 // module.exports.User = User;
 module.exports.Repo = Repo;
+// module.exports.get25TopRepos = get25TopRepos;

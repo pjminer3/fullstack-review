@@ -15,8 +15,7 @@ app.post('/repos', function (req, res) {
   // and get the repo information from the github API, then
   // save the repo information in the database
 
-  // gitHelpers.getReposByUsername(username, db.save); // do I add a next function?
-  // --------------- UNCOMMENT TOMORROW TO GET USER DATA
+  gitHelpers.getReposByUsername(username, db.save); // do I add a next function?
   
 
   res.send('Post was successful');
@@ -26,8 +25,10 @@ app.get('/repos', function (req, res) {
   console.log('Hello from GET function of server');
   // TODO - your code here!
   // This route should send back the top 25 repos
-// JSON.stringify([{repoId: 'SampleID', repoName: 'Sample Name', ownerId: 'Sample Owner Id', ownerLogin: 'Sample Login', stars: '5', htmlUrl: 'www.helloWorld.com'}])
-  res.send(JSON.stringify(([{repoId: 'SampleID', repoName: 'Sample Name', ownerId: 'Sample Owner Id', ownerLogin: 'Sample Login', stars: '5', htmlUrl: 'www.helloWorld.com'}])));
+
+ get25TopRepos(req, res);
+
+  //res.send(JSON.stringify(([{repoId: 'SampleID', repoName: 'Sample Name', ownerId: 'Sample Owner Id', ownerLogin: 'Sample Login', stars: '5', htmlUrl: 'www.helloWorld.com'}])));
 
   // query the database for the 25 dankest repos
 
@@ -39,7 +40,27 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
+function get25TopRepos (req, res) {
+  console.log('get25TopRepos was called!');
+  /* Querries DB for 25 top repos:
+    I: None
+    O: An array of repo objects from the mongo DB
+    C: Limit to 25 repos
+    E: none 
+  */
+  // finds the 25 repos with the most stars, and then passes them into the render callback callback
+  db.Repo.find( err => {
+    if (err) {
+      throw err
+    }
+  })
+  .limit(25)
+  .sort({stars: -1})
+  .then(repos => {
+    res.send(JSON.stringify(repos));
+  });
 
 
 
+}
 

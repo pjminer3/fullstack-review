@@ -27,6 +27,7 @@ class App extends React.Component {
       }, 
       error: function(err) {
         if (err) {
+          console.log('There was an error with GET request');
           console.log(err);
         }
       }
