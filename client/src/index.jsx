@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import $ from 'jquery'; // <-- We're not supposed to use jQuery with react
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
@@ -15,7 +15,20 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    // When button is clicked, will send post request to /repos and will be registered on server
+    $.ajax({
+      url: '/repos', 
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({username: term}),
+      success: function(data) {
+        console.log('Properly submitted post request: ', data);
+      },
+      error: function(err) {
+        console.log('Post failed: ', err);
+      }
+    });
+
   }
 
   render () {
