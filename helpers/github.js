@@ -18,9 +18,12 @@ let getReposByUsername = ( username, callback ) => {
   };
 
   request(options, function(err, res, body) {
-    let json = JSON.parse(body);
-    console.log('this is the parsed body', json);
-    return json;
+    if (err) {
+      throw err;
+    }
+    let reposArray = JSON.parse(body);
+    console.log('this is the parsed body', reposArray);
+    callback(reposArray);
   })
   // TODO: Add callback functionality to this request so we can do something with the actual results
 

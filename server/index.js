@@ -13,8 +13,8 @@ app.post('/repos', function (req, res) {
   // This route should take the github username provided
   let username = req.body.username;
   // and get the repo information from the github API, then
-  let repos = gitHelpers.getReposByUsername(username);
   // save the repo information in the database
+  let repos = gitHelpers.getReposByUsername(username, db.save);
   
 
   res.send(repos);
