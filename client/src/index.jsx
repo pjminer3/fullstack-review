@@ -13,6 +13,33 @@ class App extends React.Component {
 
   }
 
+  componentDidMount () {
+    // get request 
+    console.log('Component is rendered.  GET request is being sent');
+    $.ajax({
+      url: '/repos',
+      type: 'GET',
+      contentType: 'application/json',
+      success: function(data) {
+        // data will be the 25 repos
+        console.log('Sample Data was "GET"ed: ', data)
+        return data;
+      }, 
+      error: function(err) {
+        if (err) {
+          console.log(err);
+        }
+      }
+    })
+    .then( data => {
+      console.log(data);
+      this.setState({
+        repos: JSON.parse(data)
+      });
+    });
+
+  }
+
   search (term) {
     console.log(`${term} was searched`);
     // When button is clicked, will send post request to /repos and will be registered on server

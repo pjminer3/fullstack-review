@@ -14,15 +14,22 @@ app.post('/repos', function (req, res) {
   let username = req.body.username;
   // and get the repo information from the github API, then
   // save the repo information in the database
-  let repos = gitHelpers.getReposByUsername(username, db.save);
+
+  //gitHelpers.getReposByUsername(username, db.save); // do I add a next function?
   
 
-  res.send(repos);
+  res.send('Post was successful');
 });
 
 app.get('/repos', function (req, res) {
+  console.log('Hello from GET function of server');
   // TODO - your code here!
   // This route should send back the top 25 repos
+// JSON.stringify([{repoId: 'SampleID', repoName: 'Sample Name', ownerId: 'Sample Owner Id', ownerLogin: 'Sample Login', stars: '5', htmlUrl: 'www.helloWorld.com'}])
+  res.send(JSON.stringify(([{repoId: 'SampleID', repoName: 'Sample Name', ownerId: 'Sample Owner Id', ownerLogin: 'Sample Login', stars: '5', htmlUrl: 'www.helloWorld.com'}])));
+
+  // query the database for the 25 dankest repos
+
 });
 
 let port = 1128;
