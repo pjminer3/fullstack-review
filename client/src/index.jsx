@@ -49,6 +49,7 @@ class App extends React.Component {
   search(term) {
     console.log(`${term} was searched`);
     // When button is clicked, will send post request to /repos and will be registered on server
+    var that = this;
     $.ajax({
       url: '/repos', 
       type: 'POST',
@@ -56,7 +57,7 @@ class App extends React.Component {
       data: JSON.stringify({username: term}),
       success: function(data) {
         console.log('Properly submitted post request: ', data);
-        // this.get();
+        that.get();
       },
       error: function(err) {
         console.log('Post failed: ', err);

@@ -2,10 +2,9 @@ import React from 'react';
 
 const Repo = ({repo}) => (
   <div className="repo">
-    {/*Design repo object*/}
-    <h4>{repo.repoName}</h4>
-    <h5>By: {repo.ownerLogin}</h5>
-    <h6>{repo.htmlUrl}</h6>
+    <h5>
+      <a href={repo.htmlUrl}>{repo.ownerLogin}: {repo.repoName}</a>
+    </h5>
   </div>
 )
 
